@@ -14,7 +14,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 //defines port
-const port = process.env.PORT|3000
+const port = process.env.PORT||3000
 
 app.use(express.json())
 
@@ -97,7 +97,6 @@ io.on('connection',(socket)=> {
         
     })
 })
-
 
 
 app.get("/",(req,res)=> {
