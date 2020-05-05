@@ -48,12 +48,14 @@ io.on('connection',(socket)=> {
 
         socket.emit("message",getObj("Welcome","Admin"))
         socket.broadcast.to(user.room).emit("message",getObj(`${user.username} has joined`,user.username))
-        io.to(user.room).emit("roomData",{
-            room:user.room,
-            users:getUsersInRoom(user.room)
-        })
+        if(user.room) {
+            io.to(user.room).emit("roomData",{
+                room:user.room,
+                users:getUsersInRoom(user.room)
+            })
+        }
 
-        // callback()    
+         callback()    
     }) 
 
     socket.on("sendMessage",(msg,callback)=> {
